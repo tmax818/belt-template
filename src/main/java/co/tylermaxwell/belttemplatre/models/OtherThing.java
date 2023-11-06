@@ -14,7 +14,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
-public class Thing {
+public class OtherThing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,17 +30,16 @@ public class Thing {
     @Min(value = 1, message = "message string")
     private int count;
 
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "things_otherthings",
-            joinColumns = @JoinColumn(name = "thing_id"),
-            inverseJoinColumns = @JoinColumn(name = "otherthing_id")
+            joinColumns = @JoinColumn(name = "otherthing_id"),
+            inverseJoinColumns = @JoinColumn(name = "thing_id")
     )
-    private List<OtherThing> otherThings;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-//    private User user;
+    private List<Thing> things;
 
 
+
+    
 }
